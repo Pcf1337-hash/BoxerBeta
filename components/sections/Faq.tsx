@@ -1,116 +1,113 @@
-"use client";
+'use client';
 
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { motion, useReducedMotion } from "motion/react";
-import { useRef } from "react";
-import { useInViewOnce } from "@/lib/hooks";
-import { ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { ScrollReveal } from '@/components/motion/ScrollReveal';
+import { ChevronDown } from 'lucide-react';
+import { easings, durations } from '@/lib/motion';
 
 const faqs = [
   {
-    question: "Wie lange im Voraus muss ich buchen?",
+    question: 'Wie lange im Voraus muss ich buchen?',
     answer:
-      "Wir empfehlen eine Buchung mindestens 2-4 Wochen im Voraus, besonders in der Ferienzeit. Kurzfristige Anfragen sind je nach Verfügbarkeit möglich — ruf einfach an.",
+      'Wir empfehlen eine Buchung mindestens 2-4 Wochen im Voraus, besonders in der Ferienzeit. Kurzfristige Anfragen sind je nach Verfügbarkeit möglich — ruf einfach an.',
   },
   {
-    question: "Welche Hunde nehmt ihr auf?",
+    question: 'Welche Hunde nehmt ihr auf?',
     answer:
-      "Wir nehmen alle Rassen und Größen auf, solange dein Hund sozialverträglich ist. Bei Unsicherheiten klären wir das im kostenlosen Vorgespräch und Schnuppertag.",
+      'Wir nehmen alle Rassen und Größen auf, solange dein Hund sozialverträglich ist. Bei Unsicherheiten klären wir das im kostenlosen Vorgespräch und Schnuppertag.',
   },
   {
-    question: "Was ist im Preis enthalten?",
+    question: 'Was ist im Preis enthalten?',
     answer:
-      "Unterkunft im eigenen Zimmer, tägliche Spaziergänge auf unserem 4.000 qm Gelände, Futter (oder du bringst eigenes mit), Spielzeit und ganz viel Zuwendung.",
+      'Unterkunft im eigenen Zimmer, tägliche Spaziergänge auf unserem 4.000 qm Gelände, Futter (oder du bringst eigenes mit), Spielzeit und ganz viel Zuwendung.',
   },
   {
-    question: "Könnt ihr Medikamente geben?",
+    question: 'Könnt ihr Medikamente geben?',
     answer:
-      "Ja, wir können Medikamente nach Anweisung verabreichen. Bitte bringe die Medikamente mit genauer Dosierungsanleitung vom Tierarzt mit.",
+      'Ja, wir können Medikamente nach Anweisung verabreichen. Bitte bringe die Medikamente mit genauer Dosierungsanleitung vom Tierarzt mit.',
   },
   {
-    question: "Ist mein Hund versichert?",
+    question: 'Ist mein Hund versichert?',
     answer:
-      "Wir haben eine Betriebshaftpflichtversicherung. Zusätzlich empfehlen wir dir, eine eigene Hundehaftpflicht abzuschließen, falls noch nicht vorhanden.",
+      'Wir haben eine Betriebshaftpflichtversicherung. Zusätzlich empfehlen wir dir, eine eigene Hundehaftpflicht abzuschließen, falls noch nicht vorhanden.',
   },
   {
-    question: "Wie funktioniert eine Stornierung?",
+    question: 'Wie funktioniert eine Stornierung?',
     answer:
-      "Bis 7 Tage vor Aufenthalt: kostenfrei. Bis 3 Tage vorher: 50% der Buchungssumme. Kurzfristiger: volle Buchungssumme. Bei Krankheit des Hundes finden wir eine Lösung.",
+      'Bis 7 Tage vor Aufenthalt: kostenfrei. Bis 3 Tage vorher: 50% der Buchungssumme. Kurzfristiger: volle Buchungssumme. Bei Krankheit des Hundes finden wir eine Lösung.',
   },
 ];
 
-const customEase = [0.22, 1, 0.36, 1] as const;
-
 export function Faq() {
-  const prefersReducedMotion = useReducedMotion();
-  const headerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const headerInView = useInViewOnce(headerRef, { margin: "-100px" });
-  const contentInView = useInViewOnce(contentRef, { margin: "-50px" });
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const prefersReduced = useReducedMotion();
+
+  const toggleFaq = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <section className="relative py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.header
-          ref={headerRef}
-          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: customEase }}
-          className="mb-12 md:mb-16 text-center"
-        >
+        <ScrollReveal y={24} className="mb-12 md:mb-16 text-center">
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground">
             Häufige Fragen
           </h2>
-          <p className="mt-4 text-base md:text-lg text-foreground/60">
+          <p className="mt-4 text-base md:text-lg text-muted-foreground">
             Alles, was du wissen musst — und wenn nicht, ruf einfach an.
           </p>
-        </motion.header>
+        </ScrollReveal>
 
         {/* Accordion */}
-        <motion.div
-          ref={contentRef}
-          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          animate={contentInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1, ease: customEase }}
-        >
-          <AccordionPrimitive.Root type="single" collapsible className="space-y-3">
-            {faqs.map((faq, index) => (
-              <motion.div
+        <ScrollReveal staggerChildren={0.06} className="space-y-3">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
                 key={index}
-                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.5,
-                  delay: prefersReducedMotion ? 0 : index * 0.08,
-                  ease: customEase,
+                className="overflow-hidden rounded-xl border border-border transition-colors duration-300"
+                style={{
+                  backgroundColor: isOpen ? 'var(--color-muted)' : 'var(--color-card)',
                 }}
               >
-                <AccordionPrimitive.Item
-                  value={`item-${index}`}
-                  className="overflow-hidden rounded-xl border border-foreground/10 bg-background transition-colors data-[state=open]:bg-muted/50"
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="flex w-full items-center justify-between px-5 py-4 text-left md:px-6 md:py-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-[-2px] cursor-pointer w-full"
+                  aria-expanded={isOpen}
                 >
-                  <AccordionPrimitive.Header>
-                    <AccordionPrimitive.Trigger className="group flex w-full items-center justify-between px-5 py-4 text-left md:px-6 md:py-5">
-                      <span className="font-medium text-foreground pr-4 text-sm md:text-base">
-                        {faq.question}
-                      </span>
-                      <ChevronDown className="h-5 w-5 flex-shrink-0 text-foreground/50 transition-transform duration-300 group-data-[state=open]:rotate-180" />
-                    </AccordionPrimitive.Trigger>
-                  </AccordionPrimitive.Header>
-                  <AccordionPrimitive.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                    <div className="px-5 pb-4 pt-0 md:px-6 md:pb-5">
-                      <p className="text-sm md:text-base leading-relaxed text-foreground/70">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  </AccordionPrimitive.Content>
-                </AccordionPrimitive.Item>
-              </motion.div>
-            ))}
-          </AccordionPrimitive.Root>
-        </motion.div>
+                  <span className="font-medium text-foreground pr-4 text-sm md:text-base">
+                    {faq.question}
+                  </span>
+                  <ChevronDown
+                    className={`h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-primary' : ''
+                    }`}
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={prefersReduced ? { opacity: 1, height: 'auto' } : { height: 0, opacity: 0 }}
+                      animate={prefersReduced ? { opacity: 1, height: 'auto' } : { height: 'auto', opacity: 1 }}
+                      exit={prefersReduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
+                      transition={{ duration: durations.fast, ease: easings.out }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-4 pt-0 md:px-6 md:pb-5">
+                        <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </ScrollReveal>
       </div>
     </section>
   );
