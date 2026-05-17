@@ -1,42 +1,79 @@
-// ── Boxerhof main app ─────────────────────────────────────────────────
+// ── Boxerhof main app ─────────────────────────────────────────────
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "palette": ["#f4ede0", "#4a6b3f", "#1c1814"],
-  "accent": "moss",
-  "headlineSize": 1
+  "akzent": "barn",
+  "headlineSize": 1,
+  "pawTrail": true
 }/*EDITMODE-END*/;
+
+const ACCENT_PALETTES = {
+  barn: { primary: "#ad3f29", deep: "#7e2a18", soft: "#e8a89a" },
+  moss: { primary: "#4a6b3f", deep: "#2f4928", soft: "#a8c098" },
+  sun:  { primary: "#c2841a", deep: "#8c5d0c", soft: "#f0c873" },
+  sky:  { primary: "#5b7d99", deep: "#3a5269", soft: "#a4b9c8" },
+};
+
+// Paw trail cursor effect
+function usePawTrail(enabled) {
+  React.useEffect(() => {
+    if (!enabled) return;
+    let last = 0;
+    let toggle = 0;
+    const onMove = (e) => {
+      const now = Date.now();
+      if (now - last < 90) return;
+      last = now;
+      const paw = document.createElement("span");
+      paw.className = "paw-trail";
+      const rot = (Math.random() * 40 - 20) + (toggle ? 12 : -12);
+      paw.style.setProperty("--t", `translate(-50%, -50%) rotate(${rot}deg)`);
+      paw.style.left = e.clientX + "px";
+      paw.style.top = e.clientY + "px";
+      paw.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="5" cy="9" rx="1.8" ry="2.4"/><ellipse cx="9" cy="5.5" rx="1.8" ry="2.4"/><ellipse cx="15" cy="5.5" rx="1.8" ry="2.4"/><ellipse cx="19" cy="9" rx="1.8" ry="2.4"/><path d="M12 11c-3 0-6 2.5-6 5.5 0 2 1.5 3.5 3.5 3.5 1 0 1.7-.4 2.5-.4s1.5.4 2.5.4c2 0 3.5-1.5 3.5-3.5 0-3-3-5.5-6-5.5z"/></svg>`;
+      document.body.appendChild(paw);
+      toggle = 1 - toggle;
+      setTimeout(() => paw.remove(), 1500);
+    };
+    window.addEventListener("pointermove", onMove);
+    return () => window.removeEventListener("pointermove", onMove);
+  }, [enabled]);
+}
 
 function useReveal() {
   React.useEffect(() => {
-    // Reveal everything on mount with a tiny delay so transition-delay classes
-    // (reveal-d2/d3/d4) stagger the entry. Scroll-gated reveal proved unreliable
-    // in some iframe environments, and content visibility matters more than a
-    // perfectly choreographed scroll animation.
+    if (!("IntersectionObserver" in window)) {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add("in");
+          io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: "-50px 0px" });
+    document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+    // safety: reveal all after 2s in case some are below viewport on small screens
     const t = setTimeout(() => {
       document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
-    }, 50);
-    return () => clearTimeout(t);
+    }, 2400);
+    return () => { io.disconnect(); clearTimeout(t); };
   }, []);
 }
-
-const ACCENTS = {
-  moss: { color: "#5e8240", deep: "#3c5727", gold: "#e8b54a" },
-  barn: { color: "#b04830", deep: "#7f2f1c", gold: "#e8b54a" },
-  sun:  { color: "#d49a26", deep: "#9a6f10", gold: "#e8b54a" },
-};
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   useReveal();
+  usePawTrail(t.pawTrail);
 
-  // apply accent to CSS vars
   React.useEffect(() => {
-    const a = ACCENTS[t.accent] || ACCENTS.moss;
+    const a = ACCENT_PALETTES[t.akzent] || ACCENT_PALETTES.barn;
     const root = document.documentElement;
-    root.style.setProperty("--moss", a.color);
-    root.style.setProperty("--moss-deep", a.deep);
-    root.style.setProperty("--gold", a.gold);
-  }, [t.accent]);
+    root.style.setProperty("--barn", a.primary);
+    root.style.setProperty("--barn-deep", a.deep);
+    root.style.setProperty("--barn-soft", a.soft);
+  }, [t.akzent]);
 
   React.useEffect(() => {
     document.documentElement.style.setProperty("--headline-scale", t.headlineSize);
@@ -46,10 +83,10 @@ function App() {
     <>
       <Nav />
       <Hero />
-      <PhotoStrip />
       <Marquee />
+      <Intro />
       <Services />
-      <Betten />
+      <Zimmer />
       <Tag />
       <Preise />
       <Manuela />
@@ -64,14 +101,34 @@ function App() {
         {window.Icons.phone} Anrufen
       </a>
 
-      <TweaksPanel>
+      <TweaksPanel title="Tweaks · Boxerhof">
         <TweakSection label="Akzentfarbe" />
-        <TweakRadio label="Stimmung" value={t.accent}
-          options={["moss", "barn", "sun"]}
-          onChange={(v) => setTweak("accent", v)} />
-        <TweakSection label="Hinweis" />
-        <div style={{ fontSize: 11, color: "rgba(41,38,27,.6)", lineHeight: 1.5 }}>
-          Drei Akzentfarben vom Hof: <em>Moos</em> (Fensterläden), <em>Scheunen­rot</em> (Türen) und <em>Sonne</em> (Pensions­wand).
+        <TweakRadio
+          label="Stimmung"
+          value={t.akzent}
+          options={[
+            { value: "barn", label: "Scheune" },
+            { value: "moss", label: "Moos" },
+            { value: "sun",  label: "Sonne" },
+            { value: "sky",  label: "Himmel" },
+          ]}
+          onChange={(v) => setTweak("akzent", v)}
+        />
+        <TweakSection label="Typografie" />
+        <TweakSlider
+          label="Headline-Größe"
+          value={t.headlineSize}
+          min={0.8} max={1.2} step={0.05}
+          onChange={(v) => setTweak("headlineSize", v)}
+        />
+        <TweakSection label="Verspieltes" />
+        <TweakToggle
+          label="Pfoten-Spur am Cursor"
+          value={t.pawTrail}
+          onChange={(v) => setTweak("pawTrail", v)}
+        />
+        <div style={{ fontSize: 11, color: "rgba(41,38,27,.6)", lineHeight: 1.5, marginTop: 8 }}>
+          Vier Stimmungen vom Hof: <em>Scheune</em> (Türen), <em>Moos</em> (Fensterläden), <em>Sonne</em> (Pensionswand) und <em>Himmel</em> (Sommerstimmung).
         </div>
       </TweaksPanel>
     </>
