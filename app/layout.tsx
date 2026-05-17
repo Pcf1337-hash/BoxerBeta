@@ -41,6 +41,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+import { LenisProvider } from "@/components/providers/LenisProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -48,7 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${inter.variable} ${fraunces.variable} bg-background`}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <LenisProvider>{children}</LenisProvider>
+      </body>
     </html>
   );
 }

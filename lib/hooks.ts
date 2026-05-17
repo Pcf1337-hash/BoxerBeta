@@ -51,3 +51,12 @@ export function useInView(
 
   return [ref, isInView];
 }
+
+import { useInView as useMotionInView } from "motion/react";
+
+export function useInViewOnce(
+  ref: React.RefObject<any>,
+  options?: { margin?: string; amount?: "some" | "all" | number }
+): boolean {
+  return useMotionInView(ref, { ...options, once: true } as any);
+}

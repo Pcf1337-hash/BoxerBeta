@@ -1,16 +1,11 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
-import Image from "next/image";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useReducedMotion,
-} from "motion/react";
-import { ChevronDown } from "lucide-react";
-
-const words = ["Kein", "Käfig.", "Nur", "Zuhause."];
+import { useRef } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { SplitText } from '@/components/motion/SplitText';
+import { ChevronDown } from 'lucide-react';
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -18,57 +13,13 @@ export function Hero() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ['start start', 'end start'],
   });
 
+  // Scroll-linked transforms
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const wordVariants = {
-    hidden: {
-      opacity: 0,
-      y: 24,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
-  const subtitleVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-        delay: 0.4,
-      },
-    },
-  };
-
-  const scrollIndicatorVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { delay: 1, duration: 0.6 },
-    },
-  };
+  const textOpacity = useTransform(scrollYProgress, [0.3, 0.6], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0.3, 0.6], [0, -40]);
 
   return (
     <section
@@ -88,6 +39,9 @@ export function Hero() {
           alt="Ein entspannter Hund liegt gemütlich auf dem Sofa"
           fill
           priority
+          fetchPriority="high"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8f5OhHgAFvQIpqQJ4hQAAAABJRU5ErkJggg=="
           className="object-cover"
           sizes="100vw"
         />
@@ -103,44 +57,20 @@ export function Hero() {
         }}
       >
         <div className="max-w-5xl text-center">
-          {/* Headline with stagger reveal */}
-          <motion.h1
-            className="font-serif text-[clamp(3rem,12vw,15rem)] font-normal leading-[0.9] tracking-tight text-balance"
-            variants={prefersReducedMotion ? {} : containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {words.map((word, index) => (
-              <motion.span
-                key={index}
-                variants={prefersReducedMotion ? {} : wordVariants}
-                className={`inline-block ${
-                  index === 3 ? "text-accent" : "text-foreground"
-                } ${index < words.length - 1 ? "mr-[0.25em]" : ""}`}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.h1>
+          {/* Headline with SplitText word stagger */}
+          <h1 className="font-serif text-[clamp(3rem,12vw,12rem)] font-normal leading-[0.9] tracking-tight text-balance">
+            <SplitText text="Kein Käfig. Nur" mode="word" delay={0.1} />{' '}
+            <SplitText text="Zuhause." mode="word" className="text-accent" delay={0.4} />
+          </h1>
 
           {/* Subtitle */}
-          <motion.p
-            className="mx-auto mt-8 max-w-xl text-lg text-muted-foreground sm:text-xl"
-            variants={prefersReducedMotion ? {} : subtitleVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            Hundepension auf 4.000 qm in Bad Oeynhausen. Seit 2009.
-          </motion.p>
+          <p className="mx-auto mt-8 max-w-xl text-lg text-muted-foreground sm:text-xl">
+            <SplitText text="Hundepension auf 4.000 qm in Bad Oeynhausen. Seit 2009." mode="word" delay={0.6} />
+          </p>
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          variants={prefersReducedMotion ? {} : scrollIndicatorVariants}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
           <div className="flex flex-col items-center gap-2">
             <span className="text-xs uppercase tracking-widest text-muted-foreground">
               scroll
@@ -156,13 +86,13 @@ export function Hero() {
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
-                ease: [0.22, 1, 0.36, 1],
+                ease: 'easeInOut',
               }}
             >
               <ChevronDown className="h-5 w-5 text-muted-foreground" />
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
