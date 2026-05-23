@@ -11,6 +11,17 @@ import { boxerData } from "../data/boxerData";
 import { motion } from "motion/react";
 import { Calendar, ArrowRight, PawPrint, Heart, Star } from "lucide-react";
 
+export const metadata = {
+  title: "Boxerhof – Hundepension in Bad Oeynhausen",
+  description: "Exklusive Hundepension ohne Zwinger in Bad Oeynhausen. Mit Herz und Leidenschaft betreuen wir Ihre Hunde seit 2009.",
+  openGraph: {
+    title: "Boxerhof – Hundepension in Bad Oeynhausen",
+    description: "Exklusive Hundepension ohne Zwinger. 4000 qm Freilauffläche, gemütliche Zimmer, liebevolle Betreuung.",
+    type: "website",
+    locale: "de_DE",
+  },
+};
+
 // ─── News Preview ──────────────────────────────────────────────────────────────
 function NewsPreview() {
   const [posts, setPosts] = useState([]);

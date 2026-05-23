@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import {
-  Send,
-  CheckCircle2,
-  MessageCircle,
-  Calendar,
-  Phone,
-} from "lucide-react";
+import { Send, CircleCheck as CheckCircle2, MessageCircle, Calendar, Phone } from "lucide-react";
 
 export default function Contact() {
   const [status, setStatus] = useState("idle"); // idle, loading, success
@@ -98,18 +92,19 @@ export default function Contact() {
               </p>
               <div className="space-y-8">
                 {[
-                  { icon: Phone, label: "Telefon", value: "+49 123 456789" },
+                  { icon: Phone, label: "Telefon", value: "05731 – 156 07 50", href: "tel:05731-15607550" },
                   {
                     icon: MessageCircle,
                     label: "WhatsApp",
-                    value: "+49 123 456789",
+                    value: "0162 – 897 14 83",
+                    href: "https://wa.me/491628971483",
                   },
                   {
                     icon: Calendar,
-                    label: "Oeffnungszeiten",
-                    value: "Taeglich 08:00 - 20:00",
+                    label: "Öffnungszeiten",
+                    value: "Mo–Fr · 12:00–16:30 Uhr",
                   },
-                ].map(({ icon: Icon, label, value }) => (
+                ].map(({ icon: Icon, label, value, href }) => (
                   <div key={label} className="flex items-center gap-6 group">
                     <div
                       className="w-14 h-14 rounded-2xl flex items-center justify-center"
@@ -124,7 +119,13 @@ export default function Contact() {
                       >
                         {label}
                       </p>
-                      <p className="text-xl font-medium">{value}</p>
+                      {href ? (
+                        <a href={href} className="text-xl font-medium hover:underline">
+                          {value}
+                        </a>
+                      ) : (
+                        <p className="text-xl font-medium">{value}</p>
+                      )}
                     </div>
                   </div>
                 ))}

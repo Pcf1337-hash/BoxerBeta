@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { PawPrint, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { PawPrint, Eye, EyeOff, CircleAlert as AlertCircle } from "lucide-react";
 
 const terra = "#c4522a";
 const amber = "#c4a35a";
@@ -122,10 +122,7 @@ export function LoginScreen({ onLogin }) {
               color: "rgba(255,255,255,0.4)",
             }}
           >
-            Standard-Passwort:{" "}
-            <strong style={{ color: "rgba(255,255,255,0.7)" }}>
-              boxerhof2024
-            </strong>
+            Passwort eingeben um zuzugreifen
           </div>
         </div>
 

@@ -4,6 +4,17 @@ import Footer from "../../components/Footer";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ChevronLeft, ChevronRight, Images, ZoomIn } from "lucide-react";
 
+export const metadata = {
+  title: "Galerie – Boxerhof Hundepension",
+  description: "Fotoalben vom Boxerhof: Hofleben, Zimmer, Natur & Abenteuer. Echte Momente mit unseren Hunden.",
+  openGraph: {
+    title: "Galerie – Boxerhof Hundepension",
+    description: "Sehen Sie unsere Fotoalben und erleben Sie den Boxerhof mit all seinen schönen Momenten.",
+    type: "website",
+    locale: "de_DE",
+  },
+};
+
 function Lightbox({ photos, currentIndex, onClose, onPrev, onNext }) {
   const photo = photos[currentIndex];
   useEffect(() => {

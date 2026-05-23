@@ -1,5 +1,5 @@
 import React from "react";
-import { PawPrint, Instagram, Facebook, Heart } from "lucide-react";
+import { PawPrint, Drama as Instagram, Notebook as Facebook, Heart } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -26,6 +26,28 @@ export default function Footer() {
               Die exklusive Hundepension ohne Zwinger. Seit 2009 mit Herz und
               Leidenschaft fuer euren Vierbeiner.
             </p>
+            <div
+              className="text-sm space-y-2 mb-8"
+              style={{ color: "rgba(255,255,255,0.45)" }}
+            >
+              <p className="font-bold" style={{ color: "#c4a35a" }}>Kontakt</p>
+              <p>
+                <a href="tel:05731-15607550" className="hover:text-white transition-colors">
+                  05731 – 156 07 50
+                </a>
+              </p>
+              <p>
+                <a href="mailto:manuelabuescher@boxernothilfe.de" className="hover:text-white transition-colors">
+                  manuelabuescher@boxernothilfe.de
+                </a>
+              </p>
+              <p className="mt-4 font-bold" style={{ color: "#c4a35a" }}>Unterstützen</p>
+              <p>
+                <a href="https://www.paypal.com/paypalme/boxernothilfe" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  PayPal
+                </a>
+              </p>
+            </div>
             <div className="flex gap-4">
               {[Instagram, Facebook].map((Icon, i) => (
                 <a
@@ -79,10 +101,13 @@ export default function Footer() {
               className="space-y-4"
               style={{ color: "rgba(255,255,255,0.45)" }}
             >
-              {["Impressum", "Datenschutz", "AGB"].map((t) => (
-                <li key={t}>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t}
+              {[
+                { label: "Impressum", href: "/impressum" },
+                { label: "Datenschutz", href: "/datenschutz" }
+              ].map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className="hover:text-white transition-colors">
+                    {item.label}
                   </a>
                 </li>
               ))}

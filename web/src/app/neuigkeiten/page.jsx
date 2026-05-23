@@ -4,6 +4,17 @@ import Footer from "../../components/Footer";
 import { motion } from "motion/react";
 import { Calendar, ArrowRight, Newspaper } from "lucide-react";
 
+export const metadata = {
+  title: "Neuigkeiten – Boxerhof Hundepension",
+  description: "News und Aktuelles vom Boxerhof. Frisch vom Hof direkt zu Ihnen.",
+  openGraph: {
+    title: "Neuigkeiten – Boxerhof Hundepension",
+    description: "Lesen Sie die neuesten Nachrichten und Geschichten vom Boxerhof.",
+    type: "website",
+    locale: "de_DE",
+  },
+};
+
 function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString("de-DE", {
     day: "numeric",

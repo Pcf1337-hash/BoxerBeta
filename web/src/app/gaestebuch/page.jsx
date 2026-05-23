@@ -4,6 +4,17 @@ import Footer from "../../components/Footer";
 import { motion, AnimatePresence } from "motion/react";
 import { Star, PawPrint, Send, Heart, ChevronDown } from "lucide-react";
 
+export const metadata = {
+  title: "Gästebuch – Boxerhof Hundepension",
+  description: "Das Gästebuch des Boxerhof: Lesen Sie, was unsere Gäste über ihre Erfahrung sagen.",
+  openGraph: {
+    title: "Gästebuch – Boxerhof Hundepension",
+    description: "Bewertungen und Erfahrungsberichte von Gästen und ihren Hunden.",
+    type: "website",
+    locale: "de_DE",
+  },
+};
+
 const COLORS = [
   { bg: "#FFF8F0", border: "#F6D9B4", tape: "#F59E0B" },
   { bg: "#F0FFF8", border: "#B4E8D1", tape: "#10B981" },
