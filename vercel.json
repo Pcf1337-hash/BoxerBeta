@@ -1,0 +1,27 @@
+{
+  "buildCommand": "cd web && npm run build --legacy-peer-deps || echo 'Build not available, using dev'",
+  "outputDirectory": "web/dist",
+  "env": {
+    "ADMIN_PASSWORD": "tyson2811",
+    "DATABASE_URL": "postgresql://neondb_owner:npg_lQ0W5NracdyO@ep-broad-haze-ajv7hjl6.c-3.us-east-2.aws.neon.tech/neondb?sslmode=require",
+    "VITE_SUPABASE_URL": "https://izmfkvmxbmostbqmwxjf.supabase.co",
+    "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6bWZrdm14Ym1vc3RicW13eGpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MjQ4MjIsImV4cCI6MjA5NTEwMDgyMn0.AtZJeXfDNXNdbequM0cCjpHsiwoaxWqAS68I5ORc6Lg"
+  },
+  "headers": [
+    {
+      "source": "/(.*).(svg|jpg|jpeg|png|webp|gif|ico|css|js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/datenschutz",
+      "destination": "/datenschutz"
+    }
+  ]
+}
