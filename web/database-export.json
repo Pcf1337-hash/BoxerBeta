@@ -1,0 +1,277 @@
+{
+  "exportDate": "2026-05-23T09:46:15.287Z",
+  "tables": {
+    "news_posts": [
+      {
+        "id": 1,
+        "title": "Sommer auf dem Boxerhof — Es wird heiß! 🌞",
+        "content": "Die Tage werden länger, die Nächte kürzer und die Hunde genießen jeden Sonnenstrahl auf unserer großen Wiese. Für die warmen Monate haben wir wieder unsere schattige Badestation am Bach vorbereitet, damit kein Hund im Sommer auf seine Erfrischung verzichten muss. Außerdem gibt es jetzt täglich zwei Frühspaziergang-Runden, bevor es richtig heiß wird. Wir freuen uns auf alle Sommergäste!",
+        "excerpt": "Die Badestation am Bach ist wieder bereit. Zwei Frühspaziergang-Runden täglich für kühle Abenteuer.",
+        "image_url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-13.jpg",
+        "published": true,
+        "created_at": "2026-05-17T23:47:40.488Z"
+      },
+      {
+        "id": 2,
+        "title": "Neue Fotos im Hofleben-Album 📸",
+        "content": "Wir haben die Galerie mit wunderschönen neuen Aufnahmen von unseren Hofleben-Momenten ergänzt. Die Hunde haben in letzter Zeit besonders viel Freude am gemeinsamen Toben gezeigt — und das sieht man in jedem Bild! Schau mal rein in die Galerie und lass dich von der Energie und Lebensfreude der Vierbeiner anstecken.",
+        "excerpt": "Neue Fotos vom Hofleben sind jetzt in der Galerie zu sehen.",
+        "image_url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-9.jpg",
+        "published": true,
+        "created_at": "2026-05-08T23:47:40.488Z"
+      },
+      {
+        "id": 3,
+        "title": "16 Jahre Boxerhof — Danke von Herzen! 🐾",
+        "content": "In diesem Jahr feiern wir ein ganz besonderes Jubiläum: Seit 16 Jahren dürfen wir Hunde bei uns willkommen heißen, betreuen, verwöhnen und ein Stück Zuhause sein lassen. 2.400 betreute Hunde, unzählige Spaziergänge, Lachen und manchmal auch Tränen — aber immer mit dem Herzen dabei. Danke an alle Familien, die uns ihr Liebstes anvertrauen. Ihr macht den Boxerhof zu dem, was er ist.",
+        "excerpt": "Wir feiern 16 Jahre Boxerhof! Danke an alle Familien, die uns ihr Liebstes anvertrauen.",
+        "image_url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-2.jpg",
+        "published": true,
+        "created_at": "2026-04-22T23:47:40.488Z"
+      }
+    ],
+    "guestbook_entries": [
+      {
+        "id": 1,
+        "author_name": "Familie Schmidt",
+        "dog_name": "Balu",
+        "rating": 5,
+        "message": "Wir kommen jetzt schon seit 5 Jahren zu Manuela und würden nie tauschen! Balu läuft schon aufgeregt zur Tür, wenn er merkt, dass wir in Richtung Boxerhof fahren. Das sagt eigentlich alles.",
+        "approved": true,
+        "dog_breed": "Berner Sennenhund",
+        "visit_year": "2025",
+        "created_at": "2026-05-12T23:47:40.488Z"
+      },
+      {
+        "id": 3,
+        "author_name": "Thomas und Sina",
+        "dog_name": "Rocky",
+        "rating": 5,
+        "message": "Rocky ist sonst sehr anhänglich und leidet beim Trennen. Beim Boxerhof? Null Problemo. Er rennt sofort auf die Wiese. Das beruhigt uns riesig beim Urlaub machen. Absolute Empfehlung!",
+        "approved": true,
+        "dog_breed": "Labrador",
+        "visit_year": "2025",
+        "created_at": "2026-05-01T23:47:40.488Z"
+      },
+      {
+        "id": 2,
+        "author_name": "Petra M.",
+        "dog_name": "Luna",
+        "rating": 5,
+        "message": "Endlich eine Pension, die wirklich versteht, was ein Hund braucht. Luna ist glücklich, ich bin entspannt. Was will man mehr? Manuela ist einfach eine Seele von Mensch.",
+        "approved": true,
+        "dog_breed": "Golden Retriever",
+        "visit_year": "2024",
+        "created_at": "2026-04-22T23:47:40.488Z"
+      },
+      {
+        "id": 5,
+        "author_name": "Klaus und Renate",
+        "dog_name": "Waldi & Bruno",
+        "rating": 5,
+        "message": "Unsere zwei konnten auch zusammen bleiben, kein Problem für Manuela. So aufmerksam, so liebevoll. Der Hof ist traumhaft. Wir haben von unserem Urlaub profitiert, weil wir wussten, dass die Jungs top versorgt sind.",
+        "approved": true,
+        "dog_breed": "Dackel & Labrador-Mix",
+        "visit_year": "2025",
+        "created_at": "2026-04-10T23:47:40.488Z"
+      },
+      {
+        "id": 4,
+        "author_name": "Birgit K.",
+        "dog_name": "Mia",
+        "rating": 5,
+        "message": "Natürlich musste meine Boxerin Mia hier her! Und es war richtig so. Sie war nie glücklicher bei einem Fremden. Das Zimmer war wunderbar, die Spaziergänge ausgiebig. Wir kommen wieder!",
+        "approved": true,
+        "dog_breed": "Boxer",
+        "visit_year": "2024",
+        "created_at": "2026-03-22T23:47:40.488Z"
+      }
+    ],
+    "albums": [
+      {
+        "id": 1,
+        "name": "Hofleben & Freilauf",
+        "description": "Die Hunde genießen ihre Freiheit auf 4.000 qm",
+        "cover_image": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-8.jpg",
+        "sort_order": 1,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 2,
+        "name": "Unsere Zimmer",
+        "description": "Gemütliche Unterkünfte für jeden Charakter",
+        "cover_image": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-4.jpg",
+        "sort_order": 2,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 3,
+        "name": "Natur & Abenteuer",
+        "description": "Waldausflüge, Bäche und Wiesen",
+        "cover_image": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-12.jpg",
+        "sort_order": 3,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 4,
+        "name": "Besondere Momente",
+        "description": "Wenn Hunde einfach Hunde sein dürfen",
+        "cover_image": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-16.jpg",
+        "sort_order": 4,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      }
+    ],
+    "photos": [
+      {
+        "id": 1,
+        "album_id": 1,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-1.jpg",
+        "caption": "Willkommen auf dem Boxerhof",
+        "sort_order": 1,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 2,
+        "album_id": 1,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-8.jpg",
+        "caption": "Freie Läufe auf der Wiese",
+        "sort_order": 2,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 3,
+        "album_id": 1,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-9.jpg",
+        "caption": "Gemeinsam erkunden",
+        "sort_order": 3,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 4,
+        "album_id": 1,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-10.jpg",
+        "caption": "Frischer Wind und Freiheit",
+        "sort_order": 4,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 5,
+        "album_id": 1,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-11.jpg",
+        "caption": "Spielzeit auf der Wiese",
+        "sort_order": 5,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 6,
+        "album_id": 2,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-4.jpg",
+        "caption": "Das Eichen-Zimmer",
+        "sort_order": 1,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 7,
+        "album_id": 2,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-5.jpg",
+        "caption": "Das Birken-Zimmer",
+        "sort_order": 2,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 8,
+        "album_id": 2,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-6.jpg",
+        "caption": "Das Tannen-Zimmer",
+        "sort_order": 3,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 9,
+        "album_id": 2,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-7.jpg",
+        "caption": "Das Erlen-Zimmer",
+        "sort_order": 4,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 10,
+        "album_id": 3,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-12.jpg",
+        "caption": "Waldspaziergang im Morgengrauen",
+        "sort_order": 1,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 11,
+        "album_id": 3,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-13.jpg",
+        "caption": "Am Bach entlang",
+        "sort_order": 2,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 12,
+        "album_id": 3,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-14.jpg",
+        "caption": "Abenteuer im Grünen",
+        "sort_order": 3,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 13,
+        "album_id": 3,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-15.jpg",
+        "caption": "Entdeckungsreise",
+        "sort_order": 4,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 14,
+        "album_id": 4,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-16.jpg",
+        "caption": "Pure Hundezufriedenheit",
+        "sort_order": 1,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 15,
+        "album_id": 4,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-17.jpg",
+        "caption": "Entspannung pur",
+        "sort_order": 2,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 16,
+        "album_id": 4,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-18.jpg",
+        "caption": "Freunde fürs Leben",
+        "sort_order": 3,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 17,
+        "album_id": 4,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-19.jpg",
+        "caption": "Der perfekte Urlaub",
+        "sort_order": 4,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      },
+      {
+        "id": 18,
+        "album_id": 4,
+        "url": "https://raw.githubusercontent.com/Pcf1337-hash/BoxerBeta/main/uploads/boxerfoto/Boxerhof-20.jpg",
+        "caption": "Sorglos und glücklich",
+        "sort_order": 5,
+        "created_at": "2026-05-22T23:47:40.488Z"
+      }
+    ]
+  },
+  "stats": {
+    "newsCount": 3,
+    "entriesCount": 5,
+    "albumsCount": 4,
+    "photosCount": 18
+  }
+}
